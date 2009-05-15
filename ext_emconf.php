@@ -3,7 +3,7 @@
 ########################################################################
 # Extension Manager/Repository config file for ext: "php_profiler"
 #
-# Auto generated 14-05-2009 23:32
+# Auto generated 15-05-2009 22:57
 #
 # Manual updates:
 # Only the data in the array - anything else is removed by next write.
@@ -35,7 +35,7 @@ Example Extension: php_profiler_example',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
 	'author_company' => '',
-	'version' => '1.0.1',
+	'version' => '1.0.0',
 	'constraints' => array(
 		'depends' => array(
 			'cms' => '',
@@ -45,7 +45,7 @@ Example Extension: php_profiler_example',
 		'suggests' => array(
 		),
 	),
-	'_md5_values_when_last_written' => 'a:17:{s:9:"ChangeLog";s:4:"ab0c";s:10:"README.txt";s:4:"ee2d";s:12:"ext_icon.gif";s:4:"807c";s:32:"classes/class.tx_phpprofiler.php";s:4:"0048";s:19:"doc/wizard_form.dat";s:4:"9475";s:20:"doc/wizard_form.html";s:4:"99cf";s:31:"resources/lib/MySqlDatabase.php";s:4:"4da2";s:24:"resources/pqp/README.txt";s:4:"82f9";s:25:"resources/pqp/display.php";s:4:"fe27";s:23:"resources/pqp/index.php";s:4:"9c6d";s:21:"resources/pqp/pqp.tpl";s:4:"6234";s:33:"resources/pqp/classes/Console.php";s:4:"9e0a";s:39:"resources/pqp/classes/MySqlDatabase.php";s:4:"76ca";s:42:"resources/pqp/classes/PhpQuickProfiler.php";s:4:"32a5";s:25:"resources/pqp/css/pQp.css";s:4:"8023";s:32:"resources/pqp/images/overlay.gif";s:4:"a899";s:29:"resources/pqp/images/side.png";s:4:"31fb";}',
+	'_md5_values_when_last_written' => 'a:20:{s:9:"ChangeLog";s:4:"ab0c";s:10:"README.txt";s:4:"ee2d";s:12:"ext_icon.gif";s:4:"807c";s:17:"ext_localconf.php";s:4:"ce5b";s:32:"classes/class.tx_phpprofiler.php";s:4:"566b";s:24:"doc/phpquickprofiler.jpg";s:4:"0b0f";s:19:"doc/wizard_form.dat";s:4:"9475";s:20:"doc/wizard_form.html";s:4:"99cf";s:35:"hooks/class.tx_phpprofiler_eofe.php";s:4:"6952";s:31:"resources/lib/MySqlDatabase.php";s:4:"4da2";s:24:"resources/pqp/README.txt";s:4:"82f9";s:25:"resources/pqp/display.php";s:4:"fe27";s:23:"resources/pqp/index.php";s:4:"9c6d";s:21:"resources/pqp/pqp.tpl";s:4:"6234";s:33:"resources/pqp/classes/Console.php";s:4:"9e0a";s:39:"resources/pqp/classes/MySqlDatabase.php";s:4:"76ca";s:42:"resources/pqp/classes/PhpQuickProfiler.php";s:4:"32a5";s:25:"resources/pqp/css/pQp.css";s:4:"8023";s:32:"resources/pqp/images/overlay.gif";s:4:"a899";s:29:"resources/pqp/images/side.png";s:4:"31fb";}',
 	'suggests' => array(
 	),
 );
