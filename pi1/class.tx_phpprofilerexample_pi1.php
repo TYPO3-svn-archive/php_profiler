@@ -33,12 +33,13 @@ require_once (t3lib_extMgm::extPath('php_profiler', 'classes/class.tx_phpprofile
  * @subpackage	tx_phpprofilerexample
  */
 class tx_phpprofilerexample_pi1 extends tslib_pibase {
-	var $prefixId      = 'tx_phpprofilerexample_pi1';		// Same as class name
-	var $scriptRelPath = 'pi1/class.tx_phpprofilerexample_pi1.php';	// Path to this script relative to the extension dir.
-	var $extKey        = 'php_profiler_example';	// The extension key.
-	var $pi_checkCHash = true;
 	
-	protected $logDb	= null;
+	public $prefixId      = 'tx_phpprofilerexample_pi1';		// Same as class name
+	public $scriptRelPath = 'pi1/class.tx_phpprofilerexample_pi1.php';	// Path to this script relative to the extension dir.
+	public $extKey        = 'php_profiler_example';	// The extension key.
+	public $pi_checkCHash = true;
+	
+	public $profiler	= null;
 	
 	/**
 	 * The main method of the PlugIn
@@ -53,15 +54,18 @@ class tx_phpprofilerexample_pi1 extends tslib_pibase {
 		$this->pi_loadLL();
 
 		// fire up profiler
-		$profiler = t3lib_div::makeInstance('tx_phpprofiler');
-		$this->logDb = $profiler->getDbLogger();
+		$this->profiler = tx_phpprofiler::getInstance();
+		$this->profiler->initialize();
+		$this->profiler->setEnableViaGetParam();
 		
 		$this->sampleConsoleData();
 		$this->sampleDatabaseData();
 		$this->sampleMemoryLeak();
 		$this->sampleSpeedComparison();
 
-		return $this->pi_wrapInBaseClass('PHP Quick Profiler Example');
+		$content = 'PHP Quick Profiler Example';
+		
+		return $this->pi_wrapInBaseClass($content);
 	}
 	
 	/**
@@ -71,17 +75,17 @@ class tx_phpprofilerexample_pi1 extends tslib_pibase {
 	 */
 	public function sampleConsoleData() {
 		try {
-			Console::log('Begin logging data');
-			Console::logMemory($this, 'PQP Example Class : Line ' . __LINE__);
-			Console::logSpeed('Time taken to get to line ' . __LINE__);
-			Console::log($this->conf);
-			Console::logSpeed('Time taken to get to line ' . __LINE__);
-			Console::logMemory($this, 'PQP Example Class : Line ' . __LINE__);
-			Console::log('Ending log below with a sample error.');
+			$this->profiler->log('Begin logging data');
+			$this->profiler->logMemory($this, 'PQP Example Class : Line ' . __LINE__);
+			$this->profiler->logSpeed('Time taken to get to line ' . __LINE__);
+			$this->profiler->log($this->conf);
+			$this->profiler->logSpeed('Time taken to get to line ' . __LINE__);
+			$this->profiler->logMemory($this, 'PQP Example Class : Line ' . __LINE__);
+			$this->profiler->log('Ending log below with a sample error.');
 			throw new Exception('Unable to write to log!');
 		}
 		catch(Exception $e) {
-			Console::logError($e, 'Sample error logging.');
+			$this->profiler->logError($e, 'Sample error logging.');
 		}
 	}
 	
@@ -92,13 +96,13 @@ class tx_phpprofilerexample_pi1 extends tslib_pibase {
 	 */
 	public function sampleDatabaseData() {		
 		$sql = 'SELECT * FROM tt_content WHERE deleted = 0';
-		$rs = $this->logDb->query($sql);
+		$rs = $this->profiler->logQuery($sql);
 		
 		$sql = 'SELECT COUNT(uid) FROM pages';
-		$rs = $this->logDb->query($sql);
+		$rs = $this->profiler->logQuery($sql);
 		
 		$sql = 'SELECT COUNT(uid) FROM pages WHERE uid > 10';
-		$rs = $this->logDb->query($sql);
+		$rs = $this->profiler->logQuery($sql);
 	}
 	
 	/**
@@ -112,7 +116,7 @@ class tx_phpprofilerexample_pi1 extends tslib_pibase {
 					  will cause memory to be duplicated in order to create the new string.';
 		for ($i = 0; $i < 10; $i++) {
 			$ret = $ret . $longString;
-			Console::logMemory($ret, 'Watch memory leak -- iteration ' . $i);
+			$this->profiler->logMemory($ret, 'Watch memory leak -- iteration ' . $i);
 		}
 	}
 	
@@ -122,12 +126,12 @@ class tx_phpprofilerexample_pi1 extends tslib_pibase {
 	 * @return void
 	 */
 	public function sampleSpeedComparison() {
-		Console::logSpeed('Time taken to get to line ' . __LINE__);
-		Console::logSpeed('Time taken to get to line ' . __LINE__);
-		Console::logSpeed('Time taken to get to line ' . __LINE__);
-		Console::logSpeed('Time taken to get to line ' . __LINE__);
-		Console::logSpeed('Time taken to get to line ' . __LINE__);
-		Console::logSpeed('Time taken to get to line ' . __LINE__);
+		$this->profiler->logSpeed('Time taken to get to line ' . __LINE__);
+		$this->profiler->logSpeed('Time taken to get to line ' . __LINE__);
+		$this->profiler->logSpeed('Time taken to get to line ' . __LINE__);
+		$this->profiler->logSpeed('Time taken to get to line ' . __LINE__);
+		$this->profiler->logSpeed('Time taken to get to line ' . __LINE__);
+		$this->profiler->logSpeed('Time taken to get to line ' . __LINE__);
 	}	
 }
 
