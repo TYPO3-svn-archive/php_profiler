@@ -56,7 +56,7 @@ class tx_phpprofilerexample_pi1 extends tslib_pibase {
 		// fire up profiler
 		$this->profiler = tx_phpprofiler::getInstance();
 		$this->profiler->initialize();
-		$this->profiler->setEnableViaGetParam();
+		$this->profiler->setEnable();
 		
 		$this->sampleConsoleData();
 		$this->sampleDatabaseData();
